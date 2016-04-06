@@ -157,6 +157,40 @@
         <section>
           <h2>Bluemix</h2>
           <p> El escalado en Bluemix también es automático y se puede activar simplemente añadiendo el plugin necesario y añadiendo un política de escalado a nuestra aplicación.</p>
+          <pre><code>bluemix plugin install auto-scaling -r bluemix-plugin-repo
+bx as policy-attach APP -p FILE</code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Comparación</h2>
+          <ul>
+            <li> En los tres PaaS se puede escalar tanto horizontal como verticalmente, pero Heroku es el único en el que hay que hacerlo de forma manual.</li>
+            <li> Aunque todos soportan de forma nativa los lenguajes de programación más comunes, Heroku soportan además lenguajes más especificos como Scala o Clojure.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Comparación</h2>
+          <ul>
+            <li> Heroku es el PaaS que más framework soporta, seguido de cerca por OpenShift. Bluemix solo soporta Rails y Sinatra, siendo una desventaja ya que ambos son muy similares.</li>
+            <li> Bluemix es el PaaS que más services provee de forma nativa (49) que van desde acceso móvil a gestión de base de datos o traducción automática. Heroku solo provee gestiones de base de datos y Openshift solo añade a eso servicios de integración
+              continua.
+          </ul>
+        </section>
+        <section>
+          <h2>Comparación</h2>
+          <ul>
+            <li> Sin embargo, Heroku es el que dispone de un mayor número de complementos (179) también con muchas finalidades diversas como integración continua o gestión de base de datos o gestión de información sobre las aplicaciones. Los complementos de
+              OpenShift y Bluemix están más bien enfocados a la gestión de base de datos únicamente.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Comparación</h2>
+          <ul>
+            <li> <a href="http://www.paasify.it/compare/heroku-vs-bluemix"> http://www.paasify.it/compare/heroku-vs-bluemix </a> </li>
+            <li> <a href="http://www.paasify.it/compare/heroku-vs-openshift%20online"> http://www.paasify.it/compare/heroku-vs-openshift%20online </a> </li>
+          </ul>
         </section>
       </section>
     </div>
