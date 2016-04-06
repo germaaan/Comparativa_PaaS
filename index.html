@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>reveal.js – The HTML Presentation Framework</title>
+  <title>Uso de diferentes PaaS - Germán Martínez Maldonado</title>
 
   <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
   <meta name="author" content="Hakim El Hattab">
@@ -66,13 +66,62 @@
         <section>
           <h2>PaaS</h2>
           <p>
-            Los PaaS son compatibles con diferentes tipos de pilas que nos facilitan el despliegue de nuestras aplicaciones, además de darnos la posibilidad de añadir complementos que podremos usar externamente desde nuestra aplicación.
-            <br>
-            <br> Por ejemplo, tanto Heroku como OpenShift nos permiten añadir como complemento una base de datos PostgreSQL sobre la que podríamos trabajar directamente con nuestra aplicación.
+            Los PaaS son compatibles con diferentes pilas, marcos de aplicación o lenguajes de programación que nos facilitan el despliegue de nuestras aplicaciones, además de darnos la posibilidad de añadir complementos que podremos usar externamente desde nuestra
+            aplicación.
+          </p>
+          <p>
+            Por ejemplo, tanto Heroku como OpenShift nos permiten añadir como complemento una base de datos PostgreSQL sobre la que podríamos trabajar directamente con nuestra aplicación.
           </p>
         </section>
         <section>
           <h2>PaaS</h2>
+          <p>Para desplegar nuestros servicios los PaaS proveen al usuario de un número determinado de máquinas virtuales que pueden ser escaladas en función de las necesidades, siendo la propia plataforma la que se encarga de equilibrar la carga.
+          </p>
+          <p>En PaaS como Heroku, estas máquinas virtuales reciben el nombre de <strong>dynos</strong> y son bastante configurables.
+          </p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Heroku</h2>
+          <p>
+            Los dynos de Heroku se configuran mediante un archivo llamado <strong>Procfile</strong> y principalmente podemos diferenciar dos tipos de dynos: <strong> web</strong> para los procesos que van a recibir tráfico HTTP y <strong>worker</strong>            para los procesos que se van a ejecutar en segundo plano.
+          </p>
+        </section>
+        <section>
+          <h2>Heroku</h2>
+          <p>
+            Desde un terminal mediante el cliente de línea de comandos de Heroku podemos arrancar o modificar la configuración de los dynos.
+          </p>
+        </section>
+        <section>
+          <h2>Heroku</h2>
+          <p>
+            Podemos escalar horizontalmente añadiendo más dynos: <pre><code>heroku ps:scale web=2</code></pre>
+          </p>
+          <p>
+            Pero también podemos escalar verticalmente usando dynos más grandes: <pre><code>heroku ps:scale web=2:standard-2x</code></pre>
+          </p>
+        </section>
+        <section>
+          <h2>Heroku</h2>
+          <p>
+            Procfile:
+            <pre><code>web: npm start</code></pre>
+          </p>
+        </section>
+        <section>
+          <h2>Heroku</h2>
+          <p>
+            <img alt="image" src="images/img01.png" height="100%" />
+          </p>
+        </section>
+        <section>
+          <h2>Heroku</h2>
+          <p>
+            <img alt="image" src="images/img02.png" height="100%" />
+          </p>
         </section>
       </section>
 
