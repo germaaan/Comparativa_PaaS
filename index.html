@@ -66,8 +66,8 @@
         <section>
           <h2>PaaS</h2>
           <p>
-            Los PaaS son compatibles con diferentes pilas, marcos de aplicación o lenguajes de programación que nos facilitan el despliegue de nuestras aplicaciones, además de darnos la posibilidad de añadir complementos que podremos usar externamente desde nuestra
-            aplicación.
+            Los PaaS son compatibles con diferentes pilas, marcos de aplicación o lenguajes de programación (buildpacks) que nos facilitan el despliegue de nuestras aplicaciones, además de darnos la posibilidad de añadir complementos que podremos usar externamente
+            desde nuestra aplicación.
           </p>
           <p>
             Por ejemplo, tanto Heroku como OpenShift nos permiten añadir como complemento una base de datos PostgreSQL sobre la que podríamos trabajar directamente con nuestra aplicación.
@@ -125,6 +125,40 @@
         </section>
       </section>
 
+      <section>
+        <section>
+          <h2> OpenShift</h2>
+          <p> En OpenShift las aplicaciones se crean independientemente y se ejecutan en lo que se conocen como <strong>application gears</strong>. Además, es muy común que se les vaya añadiendo los complementos que necesiten mediante lo que se conoce como
+            <strong>cartuchos</strong>.
+          </p>
+          <p> Tambien desde terminal podemos arrancar o modificar la configuración de nuestra aplicación.
+          </p>
+        </section>
+        <section>
+          <h2> OpenShift</h2>
+          <p> El escalado de la aplicaciones es automático y la propia plataforma puede añadir o eliminar
+            <italic>gears</italic> en función de las necesidades que vaya detectando.</p>
+          <p> Para esto deberemos indicar el número máximo y mínimo de
+            <italic>gears</italic> de los que va a disponer la aplicación para su escalado.
+          </p>
+          <pre><code>rhc cartridge scale CART -a APP --min MIN --max MAX</code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Bluemix</h2>
+          <p> Bluemix es otra plataforma con la particularidad de que no es un exclusivamente PaaS, también puede funcionar como IaaS proveyéndonos de máquinas virtuales a los que tendremos acceso total.</p>
+        </section>
+        <section>
+          <h2>Bluemix</h2>
+          <p> En cualquier caso, podemos desplegar nuestras aplicaciones directamente en su plataforma Cloud Foundry o en contenedores Docker.</p>
+        </section>
+        <section>
+          <h2>Bluemix</h2>
+          <p> El escalado en Bluemix también es automático y se puede activar simplemente añadiendo el plugin necesario y añadiendo un política de escalado a nuestra aplicación.</p>
+        </section>
+      </section>
     </div>
 
   </div>
