@@ -75,19 +75,40 @@
         </section>
         <section>
           <h2>PaaS</h2>
-          <p>Para desplegar nuestros servicios los PaaS proveen al usuario de un número determinado de máquinas virtuales que pueden ser escaladas en función de las necesidades, siendo la propia plataforma la que se encarga de equilibrar la carga.
+          <p>Para desplegar nuestros aplicaciones los PaaS proveen al usuario de máquinas virtuales con tal fin.
           </p>
-          <p>En PaaS como Heroku, estas máquinas virtuales reciben el nombre de <strong>dynos</strong> y son bastante configurables.
+          <p>Estas máquina pueden ser escaladas en función de las necesidades, dependerá de la plataforma y del tipo de aplicación la forma en que podamos escalar nuestras aplicaciones.
           </p>
         </section>
+        <section>
+          <h2>PaaS</h2>
+          <p>En Heroku tenemos los <strong>dynos</strong> y principalmente podemos diferenciar dos tipos: <strong> web</strong> para los procesos que van a recibir tráfico HTTP y <strong>worker</strong> para los procesos que se van a ejecutar en segundo plano.
+          </p><p>También podemos añadir funcionalidades extras mediante los <strong>addons</strong>.
+          </p>
+        </section>
+          <section>
+            <h2>PaaS</h2>
+            <p>En OpenShift tenemos los <strong>gears</strong> y <strong>cartridges</strong>: los gears son los que contendrán nuestras aplicaciones y los cartridges tienen el objetivo de añadir funcionalidades concretas.
+            </p>
+        </section>
+        <section>
+          <h2>PaaS</h2>
+          <p>Bluemix utiliza la plataforma open-source <strong>Cloud Foundry</strong> para proveernos el servicio de PaaS.
+          </p>
+      </section>
       </section>
 
       <section>
         <section>
           <h2>Heroku</h2>
           <p>
-            Los dynos de Heroku se configuran mediante un archivo llamado <strong>Procfile</strong> y principalmente podemos diferenciar dos tipos de dynos: <strong> web</strong> para los procesos que van a recibir tráfico HTTP y <strong>worker</strong>            para los procesos que se van a ejecutar en segundo plano.
+            Los dynos de Heroku se configuran mediante un archivo llamado <strong>Procfile</strong>.
           </p>
+          <pre><code>
+            PROCESO: COMANDO
+
+            web: npm start
+            </code></pre>
         </section>
         <section>
           <h2>Heroku</h2>
@@ -103,13 +124,7 @@
           <p>
             Pero también podemos escalar verticalmente usando dynos más grandes: <pre><code>heroku ps:scale web=2:standard-2x</code></pre>
           </p>
-        </section>
-        <section>
-          <h2>Heroku</h2>
-          <p>
-            Procfile:
-            <pre><code>web: npm start</code></pre>
-          </p>
+          <p><i>La escalabilidad de los dynos es independiente entre sí.</i></p>
         </section>
         <section>
           <h2>Heroku</h2>
@@ -122,7 +137,7 @@
       <section>
         <section>
           <h2> OpenShift</h2>
-          <p> En OpenShift las aplicaciones se crean independientemente y se ejecutan en lo que se conocen como <strong>application gears</strong>. Además, es muy común que se les vaya añadiendo los complementos que necesiten mediante lo que se conoce como
+          <p> En OpenShift las aplicaciones se crean independientemente y se ejecutan en los <strong>application gears</strong>. Además, es muy común que se les vaya añadiendo los complementos que necesiten mediante lo que se conoce como
             <strong>cartuchos</strong>.
           </p>
           <p> Tambien desde terminal podemos arrancar o modificar la configuración de nuestra aplicación.
@@ -132,27 +147,56 @@
           <h2> OpenShift</h2>
           <p> El escalado de la aplicaciones es automático y la propia plataforma puede añadir o eliminar
             <italic>gears</italic> en función de las necesidades que vaya detectando.</p>
-          <p> Para esto deberemos indicar el número máximo y mínimo de
+            <p> Sin embargo, para que esto sea posible la aplicación debe ser creada como una aplicación escalable.</p>
+          </section>
+          <section>
+            <h2> OpenShift</h2>
+          <p> Para crear una aplicación escalable deberemos indicar el número máximo y mínimo de
             <italic>gears</italic> de los que va a disponer la aplicación para su escalado.
           </p>
           <pre><code>rhc cartridge scale CART -a APP --min MIN --max MAX</code></pre>
+        </section>
+        <section>
+          <h2> OpenShift</h2>
+          <p>Si una aplicación no se crea como escalable, todo el tráfico es mandado a un único gear. </p><p>Si añadimos otros cartuchos (ej: base de datos), estos compartirán el mismo gear y los recursos del gear de nuestra aplicación.
+        </section>
+        <section>
+          <h2> OpenShift</h2>
+          <p>Si una aplicación se crea como escalable, automáticamente se le añade un cartucho con <strong>HAProxy</strong> para balancear la carga.</p>
+          <p>Cuando el tráfico aumenta, HAProxy avisa a OpenShift, crea una copia de nuestra aplicación en otro gear (siempre que dispongamos de más).</p>
         </section>
       </section>
 
       <section>
         <section>
           <h2>Bluemix</h2>
-          <p> Bluemix es otra plataforma con la particularidad de que no es un exclusivamente PaaS, también puede funcionar como IaaS proveyéndonos de máquinas virtuales a los que tendremos acceso total.</p>
+          <p> Bluemix es una plataforma PaaS de IBM, pero que también nos proporciona servicios de IaaS dando la posibilidad de contratar por servicios de máquinas virtuales.</p>
+        </section>
+          <section>
+            <h2>Bluemix</h2>
+          <p> En lo que al ámbito PaaS se refiere, podemos desplegar nuestras aplicaciones directamente en la plataforma Cloud Foundry.</p>
+          <p> Esta plataforma nos ofrece también diferentes servicios como MySQL, MongoDB, PostgreSQL, Redis, RabbitMQ...
         </section>
         <section>
           <h2>Bluemix</h2>
-          <p> En cualquier caso, podemos desplegar nuestras aplicaciones directamente en su plataforma Cloud Foundry o en contenedores Docker.</p>
+          <p> El escalado en Bluemix puede ser tanto automático como manual. </p><p>En el caso del modo automático, se puede activar simplemente añadiendo el plugin necesario y añadiendo un política de escalado a nuestra aplicación.</p>
+          <pre><code>bx as policy-attach APP -p FILE</code></pre>
         </section>
         <section>
           <h2>Bluemix</h2>
-          <p> El escalado en Bluemix también es automático y se puede activar simplemente añadiendo el plugin necesario y añadiendo un política de escalado a nuestra aplicación.</p>
-          <pre><code>bluemix plugin install auto-scaling -r bluemix-plugin-repo
-bx as policy-attach APP -p FILE</code></pre>
+          <p>En función del tipo de aplicación es posible definir reglas de escalado para el almacenamiento dinámico, la memoria o el rendimiento.</p>
+          <p>No se detectan de forma automática conflictos entre políticas de escalado. Un conflicto podría hacer que se escale verticalmente un minuto y horizontalmente al siguiente.</p>
+        </section>
+        <section>
+          <h2>Bluemix</h2>
+          <p>Campos que se pueden usar para la creación de políticas:</p>
+          <ul>
+            <li>Recuento máximo de instancias permitidas</li>
+            <li>Duración de la infracción</li>
+            <li>Periodo de enfriamiento del escalado vertical/horizontal</li>
+            <li>Hora de inición/finalización</li>
+            <li>Repetición activada</li>
+          </ul>
         </section>
       </section>
 
@@ -167,7 +211,7 @@ bx as policy-attach APP -p FILE</code></pre>
         <section>
           <h2>Comparación</h2>
           <ul>
-            <li> Heroku es el PaaS que más framework soporta, seguido de cerca por OpenShift. Bluemix solo soporta Rails y Sinatra, siendo una desventaja ya que ambos son muy similares.</li>
+            <li> Heroku es el PaaS que más frameworks soporta, seguido de cerca por OpenShift. Bluemix solo soporta Rails y Sinatra, siendo una desventaja ya que ambos son muy similares.</li>
             <li> Bluemix es el PaaS que más services provee de forma nativa (49) que van desde acceso móvil a gestión de base de datos o traducción automática. Heroku solo provee gestiones de base de datos y Openshift solo añade a eso servicios de integración
               continua.
           </ul>
